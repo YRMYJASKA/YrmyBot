@@ -101,7 +101,7 @@ class BotFramework(object):
 
         elif message.find("PING :") != -1:
             # Received a ping from the server 
-            self.ping()
+            self.ping_server()
 
         else:
             # Do nothing

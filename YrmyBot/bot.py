@@ -48,7 +48,7 @@ class Bot(BotFramework):
             self.send_message("PowerLevel too low!", user)
     # Standard commands
     def github(self, user, message, channel):
-        self.send_message("Source code for YrmyBot: https://github.com/yrmyjaska/YrmyBot")
+        self.send_message("Source code for YrmyBot: https://github.com/yrmyjaska/YrmyBot", channel)
     def ping(self, user, message, channel):
         """The bot will respond 'pong!'"""
         self.send_message("pong!", channel)
