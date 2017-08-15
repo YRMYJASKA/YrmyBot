@@ -4,6 +4,8 @@ The Bot module
 
 from .framework import BotFramework
 from .users import *
+import sys
+
 class Bot(BotFramework):
     """The main bot class"""
     
@@ -15,6 +17,7 @@ class Bot(BotFramework):
         if fetch_user(user) >= 100:
             self.send_message(self.exitmsg, channel)
             self.connection_socket.send(bytes("QUIT \n", "UTF-8"))
+            sys.exit(1)
         else:
             self.send_message("PowerLevel too low!", user)
     def add_user(self, user, message, channel):
@@ -23,8 +26,6 @@ class Bot(BotFramework):
             print("Not enough arguments!")
             return
         if fetch_user(user) >= 100:
-            add_user(message.split(' ')[1], message.split(' ')[2])
-        if fetch_user(user) >= 50 and int(message.split(' ')[2]) < 51:
             add_user(message.split(' ')[1], message.split(' ')[2])
         else:
             self.send_message("PowerLevel too low!", user)
@@ -38,6 +39,7 @@ class Bot(BotFramework):
         else:
             self.send_message("PowerLevel too low!", user)
     def modify_user(self, user, message, channel):
+        """(ADMIN)Modify some users powerLevel"""
         if len(message.split(' ')) < 3:
             print("Not enough arguments!")
             return
@@ -48,6 +50,7 @@ class Bot(BotFramework):
             self.send_message("PowerLevel too low!", user)
     # Standard commands
     def github(self, user, message, channel):
+        """Sends the link to the source code on github.com"""
         self.send_message("Source code for YrmyBot: https://github.com/yrmyjaska/YrmyBot", channel)
     def ping(self, user, message, channel):
         """The bot will respond 'pong!'"""

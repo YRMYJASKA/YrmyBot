@@ -3,8 +3,6 @@
 from YrmyBot.bot import Bot 
 import sys
 
-print(sys.argv)
-
 # Bot made using the YrmyBot framework
 class MyBot(Bot):
     # This is a command which can be invoked with '!hello'

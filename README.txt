@@ -16,8 +16,6 @@ example code from 'example.py' (modified a bit to make it simpler)
 
       from YrmyBot.bot import Bot 
 
-      print(sys.argv)
-
       # Bot made using the YrmyBot framework
       class MyBot(Bot):
           # This is a user made command which can be invoked with '!hello'

@@ -40,10 +40,12 @@ class BotFramework(object):
 
         self.connection_socket.send(bytes("USER "  + self.nickname + " " + self.nickname + " "+ self.nickname + ":Testing... .\n" , "UTF-8"))
         self.connection_socket.send(bytes("NICK " + self.nickname + "\n", "UTF-8"))
+        print("succesfully connected to server! (%s)" % self.server)
 
     def identify(self, password):
         """Identify with the NickServ on the server with the right password (if needed)"""
         self.connection_socket.send(bytes("PRIVMSG NickServ :identify " + password +" \n", "UTF-8")) # Auth with server
+        print("identified with the nickname service!")
     def join_channel(self, channel):
         """Join a channel on the connected IRC network"""
         self.connection_socket.send(bytes("JOIN %s\n" % channel, "UTF-8"))
@@ -51,8 +53,8 @@ class BotFramework(object):
         while message.find("End of /NAMES list") == -1:
             message = self.connection_socket.recv(2048).decode("UTF-8")
             message = message.strip('\n\r')
-            print(message)
         self.channel = channel
+        print("joined channel %s" % channel)
 
     def ping_server(self):
         """Responding to ping messages received from the server to avoid disconnection"""
@@ -70,15 +72,16 @@ class BotFramework(object):
 
     def handle_message(self, message):
         """Handle the received message"""
+        # debugging purposes
+        #print(message)
         if message.find("PRIVMSG") != -1:
-            print(message)
             # Someone sent a message (channel or private)
 
             name = message.split('!', 1)[0][1:]
             message_body = message.split('PRIVMSG', 1)[1].split(':', 1)[1]
             channel =  message.split('PRIVMSG', 1)[1].split(':', 1)[0].strip()
             
-            print(name + " says: " + message_body + " @ " + channel)
+            print(name + " says: " + message_body + " in" + channel)
             if message_body[0] == '!':
                 # A command was issued
                 command = message_body.split(" ")[0][1:]
