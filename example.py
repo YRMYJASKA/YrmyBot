@@ -26,7 +26,6 @@ chan = input("Channel to join: ")
 # Connecting to server
 myBot.connect_to_server()
 if len(password) > 0:
-    print("RUNS")
     myBot.identify(password)
 myBot.join_channel(chan)
 

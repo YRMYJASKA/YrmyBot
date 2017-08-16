@@ -91,7 +91,7 @@ class BotFramework(object):
                 logging.consoleLog(msg, "FATAL")
 
             message = self.conn_socket.recv(2048).decode("UTF-8")
-            message = message.strip('\n\r')
+            # message = message.strip('\n\r')
 
             # Log the raw input to the log
             logging.rawLog(message)
