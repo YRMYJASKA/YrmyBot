@@ -7,6 +7,7 @@ Data is saved in format of:
 'name powerLevel'
 """
 
+
 def load_file(filepath="users.txt"):
     users = {}
     with open(filepath, 'r') as f:
@@ -17,6 +18,8 @@ def load_file(filepath="users.txt"):
                 users[name.lower()] = powerlevel
         f.close()
     return users
+
+
 def write_file(users, filepath="users.txt"):
     with open(filepath, 'w') as f:
 
@@ -24,13 +27,17 @@ def write_file(users, filepath="users.txt"):
             f.write(name + "=" + users.get(name, 0) + "\n")
         f.close()
     return
+
+
 def fetch_user(name, filepath="users.txt"):
     users = load_file(filepath)
-    
+
     user = users.get(name, 0)
 
     write_file(users, filepath)
     return int(user)
+
+
 def del_user(name, filepath="users.txt"):
     users = load_file(filepath)
 
@@ -39,9 +46,11 @@ def del_user(name, filepath="users.txt"):
 
     write_file(users, filepath)
     return
+
+
 def add_user(name, powerlevel, filepath="users.txt"):
     users = load_file(filepath)
-    
+
     if name in users:
         return "User already in record"
     else:
@@ -49,10 +58,13 @@ def add_user(name, powerlevel, filepath="users.txt"):
 
     write_file(users, filepath)
     return
-def modify_user_powerlevel(name, powerlevel, filepath="users.txt"):
+
+
+def modify_user_powerlvl(name, powerlevel, filepath="users.txt"):
+
     users = load_file(filepath)
 
-    if name in users: 
+    if name in users:
         users[name] = powerlevel
     else:
         print("no name: %s in users" % name)
